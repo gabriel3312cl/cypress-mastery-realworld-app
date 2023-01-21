@@ -1,17 +1,24 @@
 # ![RealWorld Example App](logo.png)
+This is exemplary project of E2E tests written in Cypress, using Page Object pattern. Application under test is a Medium.com colne (called [Conduit](https://demo.realworld.io/#/)) 
 
-> ### React / Express.js / Sequelize / PostgreSQL codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://realworld.io/) spec and API.
+Frontend and backend was done by [TonyMckes](https://github.com/TonyMckes/conduit-realworld-example-app).
 
-### [Demo app](https://conduit-realworld-example-app.fly.dev/)&nbsp;&nbsp;|&nbsp;&nbsp;[RealWorld Example Apps](https://codebase.show/projects/realworld?category=fullstack)&nbsp;&nbsp;|&nbsp;&nbsp;![](https://heroku-status-badges.herokuapp.com/conduit-realworld-example-app)
+## **Test strategy**
+Before writing any E2E tests, I defined testing strategy that visually documented the application's most important areas for test coverage ([Conduit mind map](https://miro.com/app/board/uXjVPyTICs0=/?share_link_id=723710348292)).
 
-This codebase was created to demonstrate a fully fledged fullstack application built with **React / Express.js / Sequelize / PostgreSQL** including CRUD operations, authentication, routing, pagination, and more.
+![Condiut mind map](conduit-mind-map.png)
 
-For more information on how to this works with other frontends/backends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
+### Capability test charters
+With the help of the Conduit mind map, I documented in more detail the various capabilities of the application that I plan to cover with tests.
+- [Authentication](test-charters\authentication.md)
+- [TODO]
+- [TODO]
 
+## **Set up development env**
 ## Prerequisites
 
 - Make sure your have a Node.js (v14 or newer) installed.
-- Make sure you have your database setup.
+- Make sure you have your database setup (postgreSQL).
 
 ## Installation
 
@@ -21,9 +28,7 @@ Install all the npm dependencies with the following command:
 npm install
 ```
 
-## Development
-
-### Configuration
+## Configuration
 
 In the [`backend`](backend/) directory, duplicate and remane the`.env.example` file, name it `.env`, and modify it to set all the required private development environment variables.
 
@@ -45,18 +50,10 @@ npm run dev
 
 - The backend API should be available at [http://localhost:3001/api](http://localhost:3001/api).
 
-### Testing
+### Testing (TODO)
 
 To run the tests, run the following command:
 
 ```bash
 npm test
-```
-
-## Production
-
-The following command will build the production version of the app:
-
-```bash
-npm start
 ```

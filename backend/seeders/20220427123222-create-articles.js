@@ -1,12 +1,14 @@
 "use strict";
 
 const { User } = require("../models");
+const { faker } = require('@faker-js/faker');
+
 
 module.exports = {
   async up(queryInterface, Sequelize) {
     const users = await User.findAll();
 
-    const articles = Array(55)
+    const articles = Array(2)
       .fill(null)
       .map((_, index) => ({
         slug: `lorem-ipsum-${index + 1}`,

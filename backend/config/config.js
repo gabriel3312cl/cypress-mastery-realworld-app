@@ -13,17 +13,4 @@ module.exports = {
     host: "127.0.0.1",
     dialect: "mysql",
   },
-  production: {
-    username: process.env.PG_USER,
-    password: process.env.PG_PASSWORD,
-    database: process.env.PG_DATABASE,
-    host: process.env.PG_HOST,
-    dialect: "postgres",
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false,
-      },
-    },
-  },
 };
