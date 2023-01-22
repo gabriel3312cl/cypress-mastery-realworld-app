@@ -1,17 +1,19 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import toggleFav from "../../services/toggleFav";
 
 function FavButton({ favorited, favoritesCount, handler, right, slug, text }) {
   const [loading, setLoading] = useState(false);
   const { headers, isAuth } = useAuth();
+  const navigate = useNavigate();
 
   const buttonPosition = right ? "pull-xs-right" : "";
   const buttonStyle = favorited ? "active" : "";
   const buttonText = text ? "Favorite" : !isAuth ? "" : "";
 
   const handleClick = () => {
-    if (!isAuth) return alert("You need to login first");
+    if (!isAuth) navigate("/register");
 
     setLoading(true);
 
@@ -28,7 +30,7 @@ function FavButton({ favorited, favoritesCount, handler, right, slug, text }) {
       onClick={handleClick}
     >
       <i className="ion-heart"></i> {buttonText}
-      <span className="counter"> ( {favoritesCount} )</span>
+      <span className="counter">  {favoritesCount} </span>
     </button>
   );
 }

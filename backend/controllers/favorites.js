@@ -1,4 +1,4 @@
-const { UnauthorizedError, NotFoundError } = require("../helper/customErrors");
+const { NotFoundError } = require("../helper/customErrors");
 const {
   appendFollowers,
   appendFavorites,
@@ -10,8 +10,6 @@ const { Article, Tag, User } = require("../models");
 const favoriteToggler = async (req, res, next) => {
   try {
     const { loggedUser } = req;
-    if (!loggedUser) throw new UnauthorizedError();
-
     const { slug } = req.params;
 
     const article = await Article.findOne({

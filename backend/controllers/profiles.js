@@ -1,4 +1,4 @@
-const { UnauthorizedError, NotFoundError } = require("../helper/customErrors");
+const { NotFoundError } = require("../helper/customErrors");
 const { appendFollowers } = require("../helper/helpers");
 const { User } = require("../models");
 
@@ -26,8 +26,6 @@ const getProfile = async (req, res, next) => {
 const followToggler = async (req, res, next) => {
   try {
     const { loggedUser } = req;
-    if (!loggedUser) throw new UnauthorizedError();
-
     const { username } = req.params;
 
     const profile = await User.findOne({

@@ -20,7 +20,6 @@
     "test": "concurrently \"npm test -w backend\" \"npm test -w frontend\""
   },
   "devDependencies": {
-    "@faker-js/faker": "^7.6.0",
     "concurrently": "^7.3.0"
   }
 }
