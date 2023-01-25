@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import NavItem from "../NavItem";
-import SourceCodeLink from "../SourceCodeLink";
 import DropdownMenu from "./DropdownMenu";
 
 function Navbar() {
@@ -14,10 +13,8 @@ function Navbar() {
           conduit
         </Link>
 
-        <SourceCodeLink left />
-
         <ul className="nav navbar-nav pull-xs-right">
-          <NavItem text="Home" icon="ion-compose" url="/" />
+          <NavItem text="Home" url="/" />
 
           {isAuth && (
             <>
@@ -28,7 +25,7 @@ function Navbar() {
 
           {!isAuth && (
             <>
-              <NavItem text="Login" icon="ion-log-in" url="/login" />
+              <NavItem text="Sign in" url="/login" />
               <NavItem text="Sign up" url="/register" />
             </>
           )}

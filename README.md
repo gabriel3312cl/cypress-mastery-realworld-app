@@ -4,15 +4,15 @@ This is exemplary project of E2E tests written in Cypress, using Page Object pat
 Frontend and backend was done by [TonyMckes](https://github.com/TonyMckes/conduit-realworld-example-app).
 
 ## **Test strategy**
-Before writing any E2E tests, I defined testing strategy that visually documented the application's most important areas for test coverage ([Conduit mind map](https://miro.com/app/board/uXjVPyTICs0=/?share_link_id=723710348292)).
+Visual documentation of the application most important areas ([Conduit mind map](https://miro.com/app/board/uXjVPyTICs0=/?share_link_id=723710348292)).
 
 ![Condiut mind map](conduit-mind-map.png)
 
 ### Capability test charters
-With the help of the Conduit mind map, I documented in more detail the various capabilities of the application that I plan to cover with tests.
+Before writing any E2E tests, I documented the various capabilities of the application that I plan to cover with tests.
 - [Authentication](test-charters\authentication.md)
-- [TODO]
-- [TODO]
+- [Settings]
+- [Article]
 
 ## **Set up development env**
 ## Prerequisites

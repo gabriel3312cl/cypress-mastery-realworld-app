@@ -1,25 +1,22 @@
 const { User } = require("../models");
 const { jwtSign } = require("../helper/jwt");
 const { bcryptHash, bcryptCompare } = require("../helper/bcrypt");
-const {
-  ValidationError,
-  FieldRequiredError,
-  AlreadyTakenError,
-  NotFoundError,
-} = require("../helper/customErrors");
+const { ValidationError } = require("../helper/customErrors");
 
 // Register
 const signUp = async (req, res, next) => {
   try {
     const { username, email, bio, image, password } = req.body.user;
-    if (!username) throw new FieldRequiredError(`A username`);
-    if (!email) throw new FieldRequiredError(`An email`);
-    if (!password) throw new FieldRequiredError(`A password`);
+
+    const usernameExists = await User.findOne({
+      where: { username: req.body.user.username },
+    });
+    if (usernameExists) throw new ValidationError("Username has already been taken");
 
     const userExists = await User.findOne({
       where: { email: req.body.user.email },
     });
-    if (userExists) throw new AlreadyTakenError("Email", "try logging in");
+    if (userExists) throw new ValidationError("Email has already been taken");
 
     const newUser = await User.create({
       email: email,
@@ -43,10 +40,10 @@ const signIn = async (req, res, next) => {
     const { user } = req.body;
 
     const existentUser = await User.findOne({ where: { email: user.email } });
-    if (!existentUser) throw new NotFoundError("Email", "sign in first");
+    if (!existentUser) throw new ValidationError("Email or password is invalid");
 
     const pwd = await bcryptCompare(user.password, existentUser.password);
-    if (!pwd) throw new ValidationError("Wrong email/password combination");
+    if (!pwd) throw new ValidationError("Email or password is invalid");
 
     existentUser.dataValues.token = await jwtSign(user);
 
