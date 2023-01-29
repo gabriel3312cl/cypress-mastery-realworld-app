@@ -1,7 +1,7 @@
 # ![RealWorld Example App](logo.png)
 This is exemplary project of E2E tests written in Cypress, using Page Object pattern. Application under test is a Medium.com colne (called [Conduit](https://demo.realworld.io/#/)) 
 
-Frontend and backend was done by [TonyMckes](https://github.com/TonyMckes/conduit-realworld-example-app).
+Frontend and backend was done by [TonyMckes](https://github.com/TonyMckes/conduit-realworld-example-app) with my little modifications. To see in more details what has been done go to [project board.](https://github.com/users/HubertArciszewski95/projects/2/views/1)
 
 ## **Test strategy**
 Visual documentation of the application most important areas ([Conduit mind map](https://miro.com/app/board/uXjVPyTICs0=/?share_link_id=723710348292)).
@@ -32,10 +32,16 @@ npm install
 
 In the [`backend`](backend/) directory, duplicate and remane the`.env.example` file, name it `.env`, and modify it to set all the required private development environment variables.
 
-> Optionally you can run the following command to populate your database with some dummy data:
+> You can run the following command to populate your database with test data:
 
 > ```bash
 > npx -w backend sequelize-cli db:seed:all
+> ```
+
+> If you wish to clean DB from all data:
+
+> ```bash
+> npx sequelize-cli db:seed:undo:all
 > ```
 
 ### Starting the development server
