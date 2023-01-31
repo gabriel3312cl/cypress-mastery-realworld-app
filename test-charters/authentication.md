@@ -1,9 +1,9 @@
 # Authentication
 should redirect unauthenticated user to home page
 
-should allow a visitor to sign-up, login, and logout
-
 ## Sign up
+should redirect to home page after sign up as logged in
+
 should display signup errors:
 - when username is empty
 - when username is taken
@@ -13,9 +13,7 @@ should display signup errors:
 - when password length < 4
 
 ## Sign in
-should redirect to the home page after login
-
-should remember a user for 30 days after login
+should be able to login and logout
 
 should display login errors:
 - when email is empty

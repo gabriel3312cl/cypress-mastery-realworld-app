@@ -41,7 +41,7 @@ In the [`backend`](backend/) directory, duplicate and remane the`.env.example` f
 > If you wish to clean DB from all data:
 
 > ```bash
-> npx sequelize-cli db:seed:undo:all
+> npx -w backend sequelize-cli db:seed:undo:all
 > ```
 
 ### Starting the development server
