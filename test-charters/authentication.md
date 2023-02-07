@@ -4,21 +4,26 @@ should redirect unauthenticated user to home page
 ## Sign up
 should redirect to home page after sign up as logged in
 
-should display signup errors:
+should display signup validation errors:
 - when username is empty
-- when username is taken
 - when email is empty
-- when email is taken
 - when password is empty
 - when password length < 4
+- when wrong email format
+
+should display error for taken username
+
+should display error for taken email
 
 ## Sign in
 should be able to login and logout
 
-should display login errors:
+should display login validation errors:
 - when email is empty
-- when wrong email format
 - when password is empty
 - when password length < 4
-- when invalid user
-- when invalid password for existing user
+- when wrong email format
+
+should display error for invalid user
+
+should display error for existing user when invalid password

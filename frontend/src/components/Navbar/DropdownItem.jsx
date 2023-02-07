@@ -4,6 +4,7 @@ function DropdownItem({ handler, icon, text, url, state }) {
   return (
     <Link
       className="dropdown-item"
+      data-testid="dropdown-item"
       onClick={handler}
       to={url || "#"}
       state={state}

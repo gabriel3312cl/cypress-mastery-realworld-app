@@ -18,7 +18,7 @@ function DropdownMenu() {
   };
 
   return (
-    <li className="nav-item dropdown">
+    <li className="nav-item dropdown" data-testid="nav-item">
       <div
         className="nav-link dropdown-toggle cursor-pointer"
         onClick={handleClick}

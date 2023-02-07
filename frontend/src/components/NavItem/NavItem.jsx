@@ -4,7 +4,7 @@ function NavItem({ icon, text, url, state }) {
   const activeClass = ({ isActive }) => `nav-link ${isActive ? "active" : ""}`;
 
   return (
-    <li className="nav-item">
+    <li className="nav-item" data-testid="nav-item">
       <NavLink className={activeClass} end state={state} to={url}>
         {icon && <i className={icon}></i>} {text}
       </NavLink>

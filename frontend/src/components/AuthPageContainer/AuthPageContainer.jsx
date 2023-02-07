@@ -12,7 +12,9 @@ function AuthPageContainer({ children, error, path, text, title }) {
           </p>
 
           {error && (
-            <div className="error-messages">
+            <div
+              className="error-messages"
+              data-testid="error-message">
               <p>{error}</p>
             </div>
           )}

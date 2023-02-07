@@ -55,12 +55,14 @@ function LoginForm({ onError }) {
 					aria-label="Email field"
 					placeholder="Email"
 					name="email"
+					data-testid="email-input"
 					value={form.email}
 					onChange={onUpdateField}
 					onBlur={onBlurField}
 				/>
 				{errors.email.dirty && errors.email.error ? (
-					<p className={styles.formFieldErrorMessage}>
+					<p className={styles.formFieldErrorMessage}
+						data-testid="email-validation-msg">
 						{errors.email.message}
 					</p>
 				) : null}
@@ -78,19 +80,26 @@ function LoginForm({ onError }) {
 					aria-label="Password field"
 					placeholder="Password"
 					name="password"
+					data-testid="password-input"
 					value={form.password}
 					onChange={onUpdateField}
 					onBlur={onBlurField}
 				/>
 				{errors.password.dirty && errors.password.error ? (
-					<p className={styles.formFieldErrorMessage}>
+					<p
+						className={styles.formFieldErrorMessage}
+						data-testid="password-validation-msg">
 						{errors.password.message}
 					</p>
 				) : null}
 			</div>
 
 			<div className={styles.formActions}>
-				<button className="btn btn-lg btn-primary pull-xs-right" type="submit">
+				<button
+					className="btn btn-lg btn-primary pull-xs-right"
+					type="submit"
+					data-testid="signin-btn"
+				>
 					Sign in
 				</button>
 			</div>

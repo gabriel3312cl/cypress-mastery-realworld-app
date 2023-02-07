@@ -59,12 +59,15 @@ function SignUpForm({ onError }) {
           aria-label="username field"
           placeholder="Username"
           name="username"
+          data-testid="username-input"
           value={form.username}
           onChange={onUpdateField}
           onBlur={onBlurField}
         />
         {errors.username.dirty && errors.username.error ? (
-          <p className={styles.formFieldErrorMessage}>
+          <p
+            className={styles.formFieldErrorMessage}
+            data-testid="username-validation-msg">
             {errors.username.message}
           </p>
         ) : null}
@@ -82,12 +85,15 @@ function SignUpForm({ onError }) {
           aria-label="Email field"
           placeholder="Email"
           name="email"
+          data-testid="email-input"
           value={form.email}
           onChange={onUpdateField}
           onBlur={onBlurField}
         />
         {errors.email.dirty && errors.email.error ? (
-          <p className={styles.formFieldErrorMessage}>
+          <p
+            className={styles.formFieldErrorMessage}
+            data-testid="email-validation-msg">
             {errors.email.message}
           </p>
         ) : null}
@@ -105,20 +111,26 @@ function SignUpForm({ onError }) {
           aria-label="Password field"
           placeholder="Password"
           name="password"
+          data-testid="password-input"
           value={form.password}
           onChange={onUpdateField}
           onBlur={onBlurField}
         />
         {errors.password.dirty && errors.password.error ? (
-          <p className={styles.formFieldErrorMessage}>
+          <p
+            className={styles.formFieldErrorMessage}
+            data-testid="password-validation-msg">
             {errors.password.message}
           </p>
         ) : null}
       </div>
 
       <div className={styles.formActions}>
-        <button className="btn btn-lg btn-primary pull-xs-right" type="submit">
-          Sign in
+        <button
+          className="btn btn-lg btn-primary pull-xs-right"
+          type="submit"
+          data-testid="signup-btn">
+          Sign up
         </button>
       </div>
     </form>

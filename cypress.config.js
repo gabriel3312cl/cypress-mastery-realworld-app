@@ -3,10 +3,10 @@ const axios = require("./frontend/node_modules/axios");
 
 module.exports = defineConfig({
   env: {
-    apiUrl: "http://localhost:3001/api"
+    apiUrl: "http://localhost:3000/api"
   },
   e2e: {
-    baseUrl: "http://localhost:3000",
+    baseUrl: "http://localhost:3000/#",
     supportFile: "cypress/support/e2e.ts",
     viewportHeight: 1080,
     viewportWidth: 1920,
