@@ -8,16 +8,23 @@ module.exports = defineConfig({
   e2e: {
     baseUrl: "http://localhost:3000/#",
     supportFile: "cypress/support/e2e.ts",
+    specPattern: "cypress/e2e/**/*.cy.ts",
     viewportHeight: 1080,
     viewportWidth: 1920,
-
+    video: false,
+    reporter: "cypress-mochawesome-reporter",
+    reporterOptions: {
+      configFile: "reporter-config.json",
+    },
+    
     setupNodeEvents(on, config) {
+      require("cypress-mochawesome-reporter/plugin")(on);
+
       on("task", {
         async "db:seed"() {
           const { data } = await axios.post(`${config.env.apiUrl}/testData/seed`);
           return data;
         },
-
       });
     },
   },
