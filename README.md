@@ -26,23 +26,41 @@ Before writing any E2E tests, I documented the various capabilities of the appli
 
 <br>
 
-## **Set up development env**
+## Getting Started
+
 ### Prerequisites
 
-- Make sure your have a Node.js (v14 or newer) installed.
-- Make sure you have your database setup (postgreSQL).
+Before you run the project, make sure that you have the following tools and software installed on your computer:
 
-<br>
+- Text editor/IDE (e.g., VS Code, Sublime Text, Atom)
+- [Git](https://git-scm.com/downloads)
+- [Node.js](https://nodejs.org/en/download/) `v18.11.0+`
+- [NPM](https://www.npmjs.com/) (usually included with Node.js)
+- [PostgreSQL](https://www.postgresql.org/download/)
 
-## Installation
+### Installation
 
-Install all the npm dependencies with the following command:
+To install the project on your computer, follow these steps:
 
-```bash
-npm install
-```
+1. Clone the repository to your local machine.
 
-## Configuration
+   ```bash
+   git clone https://github.com/HubertArciszewski95/cypress-realworld-example.git
+   ```
+
+2. Navigate to the project directory.
+
+   ```bash
+   cd cypress-realworld-example
+   ```
+
+3. Install project dependencies by running the command:
+
+   ```bash
+   npm install
+   ```
+
+### Configuration
 
 In the [`backend`](backend/) directory, duplicate and remane the`.env.example` file, name it `.env`, and modify it to set all the required private development environment variables.
 
@@ -52,27 +70,31 @@ In the [`backend`](backend/) directory, duplicate and remane the`.env.example` f
 > npx -w backend sequelize-cli db:seed:all
 > ```
 
+<br>
+
 > If you wish to clean DB from all data:
 
 > ```bash
 > npx -w backend sequelize-cli db:seed:undo:all
 > ```
 
-### Starting the development server
+### Usage
 
-Start the development environment with the following command:
+#### Development Server
 
-```bash
-npm run dev
-```
+To run the project, follow these steps:
 
-- The frontend website should be available at [http://localhost:3000/](http://localhost:3000).
+1. Start the development server by executing the command:
 
-- The backend API should be available at [http://localhost:3001/api](http://localhost:3001/api).
+   ```bash
+   npm run dev
+   ```
 
-<br>
+2. Open a web browser and navigate to:
+   - Home page should be available at [`http://localhost:3000/`](http://localhost:3000).
+   - API endpoints should be available at [`http://localhost:3001/api`](http://localhost:3001/api).
 
-## Testing
+#### Running Tests
 
 To run the tests, run one of the following command:
 
@@ -92,3 +114,7 @@ npm run cy:open
 ```bash
 npm run cy:run --spec "cypress/e2e/path-to-file"
 ```
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
