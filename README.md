@@ -1,30 +1,4 @@
 # ![RealWorld Example App](logo.png)
-This is exemplary project of E2E tests written in Cypress + TypeScript, using Page Object pattern. Application under test is a Medium.com colne (called [Conduit](https://demo.realworld.io/#/)) 
-
-Frontend and backend was done by [TonyMckes](https://github.com/TonyMckes/conduit-realworld-example-app) with my little modifications. 
-
-- **Reporting**: cypress-mochawesome-reporter
-- **Visual regression**: Percy
-- **Continous integration**: ???
-
-
-To see in more details what has been done go to [project board.](https://github.com/users/HubertArciszewski95/projects/2/views/1)
-
-<br>
-
-## **Test strategy**
-Visual documentation of the application most important areas ([Conduit mind map](https://miro.com/app/board/uXjVPyTICs0=/?share_link_id=723710348292)).
-
-![Condiut mind map](conduit-mind-map.png)
-
-### Capability test charters
-Before writing any E2E tests, I documented the various capabilities of the application that I plan to cover with tests.
-- [Authentication](./test-charters/authentication.md)
-- [Home page](./test-charters/home-page.md)
-- [Settings]
-- [Article]
-
-<br>
 
 ## Getting Started
 
@@ -45,13 +19,13 @@ To install the project on your computer, follow these steps:
 1. Clone the repository to your local machine.
 
    ```bash
-   git clone https://github.com/HubertArciszewski95/cypress-realworld-example.git
+   git clone https://github.com/HubertArciszewski95/cypress-mastery-realworld-app.git
    ```
 
 2. Navigate to the project directory.
 
    ```bash
-   cd cypress-realworld-example
+   cd cypress-mastery-realworld-app
    ```
 
 3. Install project dependencies by running the command:
@@ -94,27 +68,11 @@ To run the project, follow these steps:
    - Home page should be available at [`http://localhost:3000/`](http://localhost:3000).
    - API endpoints should be available at [`http://localhost:3001/api`](http://localhost:3001/api).
 
-#### Running Tests
-
-To run the tests, run one of the following command:
-
-> Headless mode
-```bash
-npm run cy:run
-``` 
-<br>
-
-> Open cypress UI
-```bash
-npm run cy:open
-```
-<br>
-
-> Specific test suite in headless mode
-```bash
-npm run cy:run --spec "cypress/e2e/path-to-file"
-```
-
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- [RealWorld (GitHub)](https://github.com/gothinkster/realworld)
+- [TonyMckes (Github)](https://github.com/TonyMckes/conduit-realworld-example-app/tree/main)

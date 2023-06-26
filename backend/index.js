@@ -19,9 +19,9 @@ app.use(express.json());
 (async () => {
   try {
     await sequelize.sync({ alter: true });
-    // await sequelize.authenticate();
+    console.log(`Connection with database has been established.`);
   } catch (error) {
-    console.error(error);
+    console.error("Unable to connect to the database:", error);
   }
 })();
 

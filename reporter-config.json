@@ -1,8 +1,0 @@
-{
-    "charts": true,
-    "reportPageTitle": "Conduit - E2E tests report",
-    "reportTitle": "Conduit - E2E tests report",
-    "embeddedScreenshots": true,
-    "inlineAssets": true,
-    "saveAllAttempts": false
-  }

@@ -1,30 +1,23 @@
 {
-  "name": "cypress-realworld-example",
+  "name": "cypress-mastery-realworld-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/HubertArciszewski95/cypress-realworld-example"
+    "url": "https://github.com/HubertArciszewski95/cypress-mastery-realworld-app"
   },
   "author": "",
-  "license": "ISC",
-  "homepage": "https://github.com/HubertArciszewski95/cypress-realworld-example#readme",
+  "license": "MIT",
+  "homepage": "https://github.com/HubertArciszewski95/cypress-mastery-realworld-app#readme",
   "workspaces": [
     "backend",
     "frontend"
   ],
   "scripts": {
-    "cy:run": "cypress run",
-    "cy:open": "cypress open",
-    "start": "npm run build -w frontend && npm run start -w backend",
-    "dev": "concurrently \"npm run dev -w backend\" \"npm run start -w frontend\"",
-    "test": "concurrently \"npm test -w backend\" \"npm test -w frontend\""
+    "dev": "concurrently \"npm run dev -w backend\" \"npm run start -w frontend\""
   },
   "devDependencies": {
-    "concurrently": "^7.3.0",
-    "cypress": "^12.4.0",
-    "cypress-mochawesome-reporter": "^3.2.3",
-    "typescript": "^4.9.5"
+    "concurrently": "^7.3.0"
   }
 }
