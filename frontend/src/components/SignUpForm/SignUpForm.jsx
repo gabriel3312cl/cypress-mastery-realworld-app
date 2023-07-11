@@ -59,6 +59,7 @@ function SignUpForm({ onError }) {
           aria-label="username field"
           placeholder="Username"
           name="username"
+          id="username"
           data-testid="username-input"
           value={form.username}
           onChange={onUpdateField}
@@ -85,6 +86,7 @@ function SignUpForm({ onError }) {
           aria-label="Email field"
           placeholder="Email"
           name="email"
+          id="email"
           data-testid="email-input"
           value={form.email}
           onChange={onUpdateField}
@@ -111,6 +113,7 @@ function SignUpForm({ onError }) {
           aria-label="Password field"
           placeholder="Password"
           name="password"
+          id="password"
           data-testid="password-input"
           value={form.password}
           onChange={onUpdateField}
