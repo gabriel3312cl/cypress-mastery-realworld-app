@@ -22,3 +22,10 @@ export const emailValidator = email => {
     }
     return "";
   };
+
+  export const genericValidator = value => {
+    if (!value) {
+      return "This is field required";
+    }
+    return "";
+  };

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../ValidationForm.module.css";
+import styles from "../../Form.module.css";
 
 function FormFieldset({
   autoFocus,
@@ -16,12 +16,14 @@ function FormFieldset({
   error,
   onBlur,
 }) {
+  const validationError = error ? (error[name]?.dirty && error[name]?.error && error[name]?.message) : null;
+
   return (
     <fieldset className="form-group">
       <input
         autoFocus={autoFocus}
         className={`form-control ${normal ? "" : "form-control-lg"} ${
-          error && styles.formFieldError
+          validationError && styles.formFieldError
         }`}
         minLength={minLength}
         name={name}
@@ -34,9 +36,9 @@ function FormFieldset({
         value={value}
       />
       {children}
-      {error && (
+      {validationError && (
         <p className={styles.formFieldErrorMessage} data-testid={`${name}-validation-msg`}>
-          {error}
+          {validationError}
         </p>
       )}
     </fieldset>

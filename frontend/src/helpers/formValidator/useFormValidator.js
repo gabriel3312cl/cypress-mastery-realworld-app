@@ -3,6 +3,7 @@ import {
   usernameValidator,
   emailValidator,
   passwordValidator,
+  genericValidator
 } from "./inputValidators.js";
 
 const touchErrors = errors => {
@@ -14,11 +15,11 @@ const touchErrors = errors => {
   );
 };
 
-export const useFormValidator = form => {
+export const useFormValidator = (form) => {
   const [errors, setErrors] = useState(() => {
     // Dynamically generate initial errors state based on form keys
     const initialErrors = Object.fromEntries(
-      Object.keys(form).map(key => [
+      Object.keys(form).map((key) => [
         key,
         {
           dirty: false,
@@ -77,21 +78,30 @@ export const useFormValidator = form => {
 
   const validateField = (fieldName, form) => {
     // Implement your field-specific validation logic here
+    const value = form[fieldName];
+    let fieldMessage = "";
+
+    // Apply specific validators for different fields
     switch (fieldName) {
       case 'username':
-        return usernameValidator(form.username, form);
+        fieldMessage = usernameValidator(value, form);
+        break;
       case 'email':
-        return emailValidator(form.email, form);
+        fieldMessage = emailValidator(value, form);
+        break;
       case 'password':
-        return passwordValidator(form.password, form);
+        fieldMessage = passwordValidator(value, form);
+        break;
       default:
-        return '';
+        fieldMessage = genericValidator(value);
     }
+
+    return fieldMessage;
   };
 
   return {
+    errors,
     validateForm,
     onBlurField,
-    errors,
   };
 };

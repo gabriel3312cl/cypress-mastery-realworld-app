@@ -4,6 +4,10 @@ import { useAuth } from "../../context/AuthContext";
 import getArticle from "../../services/getArticle";
 import setArticle from "../../services/setArticle";
 import FormFieldset from "../FormFieldset";
+import FormTextArea from "../FormTextArea/FormTextArea";
+import ErrorMessage from "../ErrorMessage";
+import { useFormValidator } from "../../helpers/formValidator/useFormValidator";
+import FormButton from "../FormButton/FormButton";
 
 const emptyForm = { title: "", description: "", body: "", tagList: "" };
 
@@ -14,6 +18,11 @@ function ArticleEditorForm() {
   );
   const [errorMessage, setErrorMessage] = useState("");
   const { isAuth, headers, loggedUser } = useAuth();
+  const { errors, validateForm, onBlurField } = useFormValidator({
+    title,
+    description,
+    body,
+  });
 
   const navigate = useNavigate();
   const { slug } = useParams();
@@ -35,11 +44,23 @@ function ArticleEditorForm() {
     return () => setForm(emptyForm);
   }, [headers, isAuth, loggedUser.username, navigate, slug, state]);
 
-  const inputHandler = (e) => {
-    const type = e.target.name;
+  const inputHandler = e => {
+    const field = e.target.name;
     const value = e.target.value;
+    const nextFormState = {
+      title, description, body,
+      [field]: value,
+    };
 
-    setForm((form) => ({ ...form, [type]: value }));
+    if (errors[field].dirty) {
+      validateForm({
+        form: nextFormState,
+        errors,
+        field,
+      });
+    }
+    
+    setForm((form) => ({ ...form, [field]: value }));
   };
 
   const tagsInputHandler = (e) => {
@@ -48,8 +69,11 @@ function ArticleEditorForm() {
     setForm((form) => ({ ...form, tagList: value.split(/,| /) }));
   };
 
+
   const formSubmit = (e) => {
     e.preventDefault();
+    const { isValid } = validateForm({ form: { title, description, body }, errors, forceTouchErrors: true });
+    if (!isValid) return;
 
     setArticle({ headers, slug, body, description, tagList, title })
       .then((slug) => navigate(`/article/${slug}`))
@@ -59,35 +83,34 @@ function ArticleEditorForm() {
   return (
     <form onSubmit={formSubmit}>
       <fieldset>
-        {errorMessage && <span className="error-messages">{errorMessage}</span>}
+        {errorMessage && <ErrorMessage errorText={errorMessage}></ErrorMessage>}
         <FormFieldset
           placeholder="Article Title"
           name="title"
-          required
           value={title}
           handler={inputHandler}
+          onBlur={onBlurField}
+          error={errors}
         ></FormFieldset>
 
         <FormFieldset
           normal
           placeholder="What's this article about?"
           name="description"
-          required
           value={description}
           handler={inputHandler}
+          onBlur={onBlurField}
+          error={errors}
         ></FormFieldset>
 
-        <fieldset className="form-group">
-          <textarea
-            className="form-control"
-            rows="8"
-            placeholder="Write your article (in markdown)"
-            name="body"
-            required
-            value={body}
-            onChange={inputHandler}
-          ></textarea>
-        </fieldset>
+        <FormTextArea
+          placeholder="Write your article (in markdown)"
+          name="body"
+          value={body}
+          handler={inputHandler}
+          onBlur={onBlurField}
+          error={errors}
+        ></FormTextArea>
 
         <FormFieldset
           normal
@@ -99,9 +122,9 @@ function ArticleEditorForm() {
           <div className="tag-list"></div>
         </FormFieldset>
 
-        <button className="btn btn-lg pull-xs-right btn-primary" type="submit">
-          {slug ? "Update Article" : "Publish Article"}
-        </button>
+        <FormButton
+        text={slug ? "Update Article" : "Publish Article"}
+        ></FormButton>
       </fieldset>
     </form>
   );

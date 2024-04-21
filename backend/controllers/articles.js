@@ -188,13 +188,24 @@ const updateArticle = async (req, res, next) => {
       throw new ForbiddenError("article");
     }
 
-    const { title, description, body } = req.body.article;
+    const { title, description, body, tagList } = req.body.article;
     if (title) {
       article.slug = slugify(title);
       article.title = title;
     }
     if (description) article.description = description;
     if (body) article.body = body;
+
+    for (const tag of tagList) {
+      const tagInDB = await Tag.findByPk(tag.trim());
+
+      if (!tagInDB) {
+        const newTag = await Tag.create({ name: tag.trim() });
+        await article.addTagList(newTag);
+      }
+    }
+
+    await article.setTagList(tagList);
     await article.save();
 
     appendTagList(article.tagList, article);
