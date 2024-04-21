@@ -3,9 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import userSignUp from "../../services/userSignUp";
 import { useFormValidator } from "../../helpers/formValidator/useFormValidator";
-import styles from "../../ValidationForm.module.css";
 import FormFieldset from "../FormFieldset";
-
+import FormButton from "../FormButton/FormButton";
 
 function SignUpForm({ onError }) {
   const [form, setForm] = useState({
@@ -50,40 +49,39 @@ function SignUpForm({ onError }) {
     <form onSubmit={onSubmitForm}>
       <FormFieldset
         placeholder={"Username"}
-        name="username"
-        testid="username-input"
+        name={"username"}
+        testid={"username-input"}
         handler={onUpdateField}
         onBlur={onBlurField}
         value={form.username}
-        error={errors.username.dirty && errors.username.error && errors.username.message}
+        error={errors}
       ></FormFieldset>
 
       <FormFieldset
         placeholder={"Email"}
-        testid="email-input"
-        name="email"
+        testid={"email-input"}
+        name={"email"}
         handler={onUpdateField}
         onBlur={onBlurField}
         value={form.email}
-        error={errors.email.dirty && errors.email.error && errors.email.message}
+        error={errors}
       ></FormFieldset>
 
       <FormFieldset
         placeholder={"Password"}
-        name="password"
-        testid="password-input"
+        name={"password"}
+        testid={"password-input"}
         handler={onUpdateField}
         onBlur={onBlurField}
         value={form.password}
-        type="password"
-        error={errors.password.dirty && errors.password.error && errors.password.message}
+        type={"password"}
+        error={errors}
       ></FormFieldset>
 
-      <div className={styles.formActions}>
-        <button className="btn btn-lg btn-primary pull-xs-right" type="submit" data-testid="signup-btn">
-          Sign up
-        </button>
-      </div>
+        <FormButton
+          text={"Sign up"}
+          testid={"signup-btn"}
+        ></FormButton>
     </form>
   );
 }

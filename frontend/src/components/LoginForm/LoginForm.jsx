@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import userLogin from "../../services/userLogin";
 import { useFormValidator } from "../../helpers/formValidator/useFormValidator";
-import styles from "../../ValidationForm.module.css";
 import FormFieldset from "../FormFieldset";
+import FormButton from "../FormButton/FormButton";
 
 
 function LoginForm({ onError }) {
@@ -13,7 +13,7 @@ function LoginForm({ onError }) {
 	const { setAuthState } = useAuth();
 	const navigate = useNavigate();
 
-	const onUpdateField = e => {
+	const inputHandler = e => {
 		const field = e.target.name;
 		const nextFormState = {
 			...form,
@@ -34,42 +34,39 @@ function LoginForm({ onError }) {
 		const { isValid } = validateForm({ form, errors, forceTouchErrors: true });
 		if (!isValid) return;
 
-		if (isValid) {
-			userLogin(form)
-				.then(setAuthState)
-				.then(() => navigate("/"))
-				.catch(onError);
-		}
+		userLogin(form)
+			.then(setAuthState)
+			.then(() => navigate("/"))
+			.catch(onError);
 	};
 
 	return (
 		<form onSubmit={onSubmitForm}>
 			<FormFieldset
 				placeholder={"Email"}
-				name="email"
-				testid="email-input"
-				handler={onUpdateField}
+				name={"email"}
+				testid={"email-input"}
+				handler={inputHandler}
 				onBlur={onBlurField}
 				value={form.email}
-				error={errors.email.dirty && errors.email.error && errors.email.message}
+				error={errors}
 			></FormFieldset>
 
 			<FormFieldset
 				placeholder={"Password"}
-				name="password"
-				testid="password-input"
-				handler={onUpdateField}
+				name={"password"}
+				testid={"password-input"}
+				handler={inputHandler}
 				onBlur={onBlurField}
 				value={form.password}
-				type="password"
-				error={errors.password.dirty && errors.password.error && errors.password.message}
+				type={"password"}
+				error={errors}
 			></FormFieldset>
 
-			<div className={styles.formActions}>
-				<button className="btn btn-lg btn-primary pull-xs-right" type="submit" data-testid="signin-btn">
-					Sign in
-				</button>
-			</div>
+			<FormButton
+				text={"Sign in"}
+				testid={"signin-btn"}
+			></FormButton>
 		</form>
 	);
 }

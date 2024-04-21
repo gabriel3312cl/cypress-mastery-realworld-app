@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import ContainerRow from "../ContainerRow";
+import ErrorMessage from "../ErrorMessage/";
 
 function AuthPageContainer({ children, error, path, text, title }) {
   return (
@@ -11,13 +12,7 @@ function AuthPageContainer({ children, error, path, text, title }) {
             <Link to={path}>{text}</Link>
           </p>
 
-          {error && (
-            <div
-              className="error-messages"
-              data-testid="error-message">
-              <p>{error}</p>
-            </div>
-          )}
+          {error && <ErrorMessage errorText={error}></ErrorMessage>}
 
           {children}
         </div>
