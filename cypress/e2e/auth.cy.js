@@ -9,11 +9,15 @@ describe('Authorization', () => {
 
   context('Register', () => {
 
+    beforeEach(() => {
+      cy.visit('/register');
+    });
+
     it('Should redirect to home page after registering, as logged in', () => {
       const username = faker.internet.username();
       const email = faker.internet.email();
       const password = faker.internet.password();
-      cy.visit('/register');
+      //cy.visit('/register');
       cy.getByTestId("username-input").type(username);
       cy.getByTestId("email-input").type(email);
       cy.getByTestId("password-input").type(password);
@@ -23,7 +27,7 @@ describe('Authorization', () => {
     });
 
     it('Should display error for taken username', () => {
-      cy.visit('/register');
+      //cy.visit('/register');
       cy.getByTestId("username-input").type("foofoofoo");
       cy.getByTestId("email-input").type("foofoofoo@foo.cl");
       cy.getByTestId("password-input").type("password");
@@ -33,7 +37,7 @@ describe('Authorization', () => {
 
     it('Should display error for taken email', () => {
       const username = faker.internet.username();
-      cy.visit('/register');
+      //cy.visit('/register');
       cy.getByTestId("username-input").type(username);
       cy.getByTestId("email-input").type("foofoofoo@foo.cl");
       cy.getByTestId("password-input").type("password");
