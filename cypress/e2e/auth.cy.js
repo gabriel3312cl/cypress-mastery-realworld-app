@@ -2,44 +2,45 @@ import { faker } from "@faker-js/faker"
 
 describe('Authorization', () => {
 
-  context('Register', () => {
-    it('Should redirect to home page after registering, as logged in', () => {
+  it('Should redirect unauthenticated user to home page', () => {
+    cy.visit("/settings");
+    cy.location("hash").should("equal", "#/");
+  });
 
-      // arrange - set up the application state
-      // - prepare data
+  context('Register', () => {
+
+    it('Should redirect to home page after registering, as logged in', () => {
       const username = faker.internet.username();
       const email = faker.internet.email();
       const password = faker.internet.password();
-
-      // - visit the register page
       cy.visit('/register');
-
-      // act - query for an element and intercat with it
-      // - type username
-      cy.get("[data-testid=username-input]").type(username);
-      // - type email
-      cy.get("[data-testid=email-input]").type(email);
-      // - type password
-      cy.get("[data-testid=password-input]").type(password);
-      // - click on sign up button
-      cy.get("[data-testid=signup-btn]").click();
-      
-      //cy.wait(2000);
-
-      // assert - check result in the application
-      // - check if redirected to the home page
-      // - check if registered user was logged in
-
+      cy.getByTestId("username-input").type(username);
+      cy.getByTestId("email-input").type(email);
+      cy.getByTestId("password-input").type(password);
+      cy.getByTestId("signup-btn").click();
       cy.location("hash").should("equal", "#/")
-      cy.get("[data-testid=nav-item]").should("contain", username);
-
+      cy.getByTestId("nav-item").should("contain", username);
     });
-  });
 
-  context('Login', () => {
-    it('Test 1', () => {
-
+    it('Should display error for taken username', () => {
+      cy.visit('/register');
+      cy.getByTestId("username-input").type("foofoofoo");
+      cy.getByTestId("email-input").type("foofoofoo@foo.cl");
+      cy.getByTestId("password-input").type("password");
+      cy.getByTestId("signup-btn").click();
+      cy.getByTestId("error-message").should("be.visible").and("have.text", "Username has already been taken");
     });
+
+    it('Should display error for taken email', () => {
+      const username = faker.internet.username();
+      cy.visit('/register');
+      cy.getByTestId("username-input").type(username);
+      cy.getByTestId("email-input").type("foofoofoo@foo.cl");
+      cy.getByTestId("password-input").type("password");
+      cy.getByTestId("signup-btn").click();
+      cy.getByTestId("error-message").should("be.visible").and("have.text", "Email has already been taken");
+    });
+
   });
 
 });
