@@ -17,3 +17,4 @@
 //import './commands'
 
 import "./commands/getByTestId";
+import "./commands/login";
